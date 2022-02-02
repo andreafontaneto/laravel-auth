@@ -67,8 +67,13 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+                    {{-- @auth è un altro tipo di @if --}}
+                    {{-- SE sei autenticato vedi HOME... --}}
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                    {{-- quest è il link per la rotta dell'Area Admin --}}
+                        <a href="{{ route('admin.index') }}">Home</a>
+                    
+                    {{-- ...ALTRIMENTI (se non sei autenticato) vedi LOGIN e REGISTER--}}
                     @else
                         <a href="{{ route('login') }}">Login</a>
 

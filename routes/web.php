@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('index');
+// Route::get('/home', 'HomeController@index')->name('index');
+
+Route::middleware('auth')
+        //la cartella che contiene i nostri controller 'auth'
+        ->namespace('Admin')
+        // tutti i percorsi (name) dovranno iniziare per 'admin.'
+        ->name('admin.')
+        // prefix
+        ->prefix('admin')
+        ->group(function(){
+            // QUI METTIAMO LE ROTTE NUOVE che ereditano le istruzioni che abbiamo scritto prima
+            // tutte avranno 'auth'
+            // tutte avranno come namespace 'Admin'
+            
+            // in automatico tutte le rotte avranno...
+            // ...come 1° parametro "Admin/..."
+            // ...come 2° parametro il nuovo controller
+            Route::get('/', 'HomeController@index')->name('index');
+        })
+;
