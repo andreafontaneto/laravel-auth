@@ -30,7 +30,7 @@ Route::middleware('auth')
         // prefix
         ->prefix('admin')
         ->group(function(){
-            // QUI METTIAMO LE ROTTE NUOVE che ereditano le istruzioni che abbiamo scritto prima
+            // QUI METTIAMO LE ROTTE NUOVE protette da password che ereditano le istruzioni che abbiamo scritto prima
             // tutte avranno 'auth'
             // tutte avranno come namespace 'Admin'
             
@@ -38,5 +38,7 @@ Route::middleware('auth')
             // ...come 1° parametro "Admin/..."
             // ...come 2° parametro il nuovo controller
             Route::get('/', 'HomeController@index')->name('index');
+
+            Route::resource('/posts', 'PostController');
         })
 ;
