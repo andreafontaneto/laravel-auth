@@ -30,7 +30,7 @@
             <tr>
               <th scope="row">{{ $post->id }}</th>
               <td>{{ $post->title }}</td>
-              <td>
+              <td class="d-flex justify-content-between">
                 <a class="btn btn-success" href="{{ route('admin.posts.show', $post)}}">SHOW</a>
                 <a class="btn btn-info" href="{{ route('admin.posts.edit', $post)}}">EDIT</a>
                 <form onsubmit="return confirm('Sicuro di voler eliminare questo post?')" action="{{ route('admin.posts.destroy', $post)}}" method="POST">
