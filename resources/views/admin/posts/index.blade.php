@@ -1,8 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
+@section('title')
+  | Elenco Post
+@endsection
 
 @section('content')
 <div class="container">
-  
+
   @if (session('deleted'))
     <div class="alert alert-danger" role="alert">
       {{ session('deleted') }}
