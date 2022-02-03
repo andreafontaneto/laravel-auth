@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts =  Post::orderBy('id', 'desc')->get();
+        $posts =  Post::orderBy('id', 'desc')->paginate(5);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -88,9 +88,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        if ($post) {
+            return view('admin.posts.edit', compact('post'));
+        }
     }
 
     /**
