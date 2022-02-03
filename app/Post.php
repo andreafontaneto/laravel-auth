@@ -7,6 +7,11 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
+    protected $fillable = [
+        'title',
+        'content'
+    ];
+
     // creo una funzione statica (::) per poterla richiamare DOPO nel seeder usando QUESTO Model (Post)
     public static function generateSlug($title){
 
