@@ -95,6 +95,8 @@ class PostController extends Controller
         if ($post) {
             return view('admin.posts.edit', compact('post'));
         }
+
+        abort(404, 'Il post è stato modificato, cancellato o la pagina non esiste più');
     }
 
     /**
@@ -104,9 +106,30 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate(
+            [
+                'title'=>'required|max:255|min:2',
+                'content'=>'required'
+            ],
+            [
+                'title.required'=>'Il titolo è un campo richiesto',
+                'title.max'=>'Il titolo non deve superare :max caratteri',
+                'title.min'=>'Il titolo non deve avere meno di :min caratteri',
+
+                'content.required'=>'Il contenuto è un campo richiesto'
+            ]
+        );
+
+        $post_data = $request->all();
+        if ($post_data['title'] != $post->title) {
+            $post_data['slug'] = Post::generateSlug($post_data['title']);
+        }
+
+        $post->update($post_data);
+
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**

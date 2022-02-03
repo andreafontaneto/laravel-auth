@@ -9,7 +9,8 @@ class Post extends Model
 {
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'slug'
     ];
 
     // creo una funzione statica (::) per poterla richiamare DOPO nel seeder usando QUESTO Model (Post)

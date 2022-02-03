@@ -20,21 +20,20 @@
     @method('PUT')
     <div class="mb-3">
       <label for="title" class="form-label">Titolo</label>
-      <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ $post->title }}" placeholder="Inserisci il titolo del post" name="title" id="title">
+      <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $post->title) }}" placeholder="Inserisci il titolo del post" name="title" id="title">
       @error('title')
         <p>{{ $message }}</p>
       @enderror
     </div>
     <div class="mb-3">
       <label for="content" class="form-label">Contenuto</label>
-      <textarea class="form-control @error('content') is-invalid @enderror" placeholder="Inserisci il contenuto del post" name="content" id="content">{{ $post->content }}</textarea>
+      <textarea class="form-control @error('content') is-invalid @enderror" placeholder="Inserisci il contenuto del post" name="content" id="content">{{ old('content', $post->content) }}</textarea>
       @error('content')
         <p>{{ $message }}</p>
       @enderror
     </div>
     
     <button type="submit" class="btn btn-success">Invia</button>
-    <button type="reset" class="btn btn-secondary">Reset</button>
   </form>
 
 </div>
