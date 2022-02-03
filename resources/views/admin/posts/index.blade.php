@@ -10,7 +10,7 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">TITOLO</th>
-              <th scope="col">AZIONI</th>
+              <th scope="col" colspan="3">AZIONI</th>
             </tr>
           </thead>
           <tbody>
@@ -19,7 +19,15 @@
                 <tr>
                   <th scope="row">{{ $post->id }}</th>
                   <td>{{ $post->title }}</td>
-                  <td>XXX</td>
+                  <td>
+                    <a class="btn btn-success" href="{{ route('admin.posts.show', $post)}}">SHOW</a>
+                    <a class="btn btn-info" href="{{ route('admin.posts.edit', $post)}}">EDIT</a>
+                    <form action="{{ route('admin.posts.destroy', $post)}}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button class="btn btn-danger" type="submit">DELETE</button>
+                    </form>
+                  </td>
                 </tr>
               @endforeach
             
