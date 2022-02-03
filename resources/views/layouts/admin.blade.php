@@ -54,7 +54,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">REGISTER</a>
-                                </li> 
+                                </li>
                             @endguest
                             @auth
                                 <li class="nav-item dropdown">
@@ -78,9 +78,16 @@
                         </ul>
                     </div>
                 </div>
- 
+
+              
             </div>
           </nav>
     </header>
+
+    <div id="app">
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
 </body>
 </html>
