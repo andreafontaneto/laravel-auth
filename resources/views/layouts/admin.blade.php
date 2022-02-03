@@ -20,6 +20,56 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid justify-content-between">
+
+                <div class="row">
+                    <a class="navbar-brand" href="{{ route('home') }}">IlMioSito</a>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.index') }}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.posts.index') }}">Elenco post</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.posts.create') }}">Crea nuovo post</a>
+                            </li>
+                        @endauth
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">LOGIN</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">REGISTER</a>
+                            </li> 
+                            @endguest
+                            @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}">LOGOUT</a>
+                            </li>
+                            @endauth
+                        </ul>
+                    </div>
+                </div>
+
+              
+            </div>
+          </nav>
+    </header>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
